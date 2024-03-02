@@ -1,0 +1,12 @@
+{
+  "FULLSEARCH": {
+    "window_title": "Search",
+    "button_search": "Search",
+    "button_cancel": "Cancel",
+    "dialog_title": "Search some text in Journals, Actors, Items...",
+    "dialog_input": "Type in the text you want to search :",
+    "chat_intro": "Search result",
+    "chat_text": "Searched text : ",
+    "pagetooltip": "See page"
+  }
+}
