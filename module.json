@@ -2,7 +2,7 @@
   "id": "fullsearch",
   "title": "Search Documents",
   "description": "Module for searching pattern in documents",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "compatibility": {
     "minimum": 11,
     "verified": "11"

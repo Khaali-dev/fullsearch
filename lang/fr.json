@@ -7,6 +7,8 @@
     "dialog_input": "Entrez ici le texte à rechercher :",
     "chat_intro": "Résultat de la recherche",
     "chat_text": "Texte recherché : ",
-    "page_tooltip": "Visualiser la page"
+    "page_tooltip": "Visualiser la page",
+    "highlight_button": "Surligner on/off",
+    "highlight_tooltip": "Basculer le surlignage du texte recherché dans les documents"
   }
 }

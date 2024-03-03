@@ -7,6 +7,8 @@
     "dialog_input": "Type in the text you want to search :",
     "chat_intro": "Search result",
     "chat_text": "Searched text : ",
-    "pagetooltip": "See page"
+    "pagetooltip": "See page",
+    "highlight_button": "Highlight on/off",
+    "highlight_tooltip": "Toggle highlighting of pattern in documents"
   }
 }
