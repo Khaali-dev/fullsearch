@@ -1,14 +1,15 @@
 {
   "FULLSEARCH": {
-    "window_title": "Rechercher",
     "button_search": "Rechercher",
     "button_cancel": "Annuler",
-    "dialog_title": "Recherche de Texte dans les Journaux, Personnages, Objets...",
-    "dialog_input": "Entrez ici le texte à rechercher :",
     "chat_intro": "Résultat de la recherche",
     "chat_text": "Texte recherché : ",
-    "page_tooltip": "Visualiser la page",
+    "dialog_title": "Recherche de Texte dans les Journaux, Personnages, Objets...",
+    "dialog_input": "Entrez ici le texte à rechercher :",
     "highlight_button": "Surligner on/off",
-    "highlight_tooltip": "Basculer le surlignage du texte recherché dans les documents"
+    "highlight_tooltip": "Basculer le surlignage du texte recherché dans les documents",
+    "page_tooltip": "Visualiser la page",
+    "too_many_results": "Plus de 20 résultats, affinez votre recherche.",
+    "window_title": "Rechercher"
   }
 }

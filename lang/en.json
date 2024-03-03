@@ -1,14 +1,15 @@
 {
   "FULLSEARCH": {
-    "window_title": "Search",
     "button_search": "Search",
     "button_cancel": "Cancel",
-    "dialog_title": "Search some text in Journals, Actors, Items...",
-    "dialog_input": "Type in the text you want to search :",
     "chat_intro": "Search result",
     "chat_text": "Searched text : ",
-    "pagetooltip": "See page",
+    "dialog_title": "Search some text in Journals, Actors, Items...",
+    "dialog_input": "Type in the text you want to search :",
     "highlight_button": "Highlight on/off",
-    "highlight_tooltip": "Toggle highlighting of pattern in documents"
+    "highlight_tooltip": "Toggle highlighting of pattern in documents",
+    "too_many_results": "More than 20 results, please refine your search terms.",
+    "pagetooltip": "See page",
+    "window_title": "Search"
   }
 }
