@@ -6,8 +6,10 @@
     "chat_text": "Texte recherché : ",
     "dialog_title": "Recherche de Texte dans les Journaux, Personnages, Objets...",
     "dialog_input": "Entrez ici le texte à rechercher :",
-    "highlight_button": "Surligner on/off",
-    "highlight_tooltip": "Basculer le surlignage du texte recherché dans les documents",
+    "highlighted_button": "Surligner Off",
+    "highlighted_tooltip": "Ne plus surligner le texte recherché dans les documents",
+    "unhighlighted_button": "Surligner On",
+    "unhighlighted_tooltip": "Surligner le texte recherché dans les documents",
     "page_tooltip": "Visualiser la page",
     "too_many_results": "Plus de 20 résultats, affinez votre recherche.",
     "window_title": "Rechercher"
