@@ -11,6 +11,7 @@
     "unhighlighted_button": "Highlight On",
     "unhighlighted_tooltip": "Toggle on highlighting of pattern in documents",
     "too_many_results": "More than 20 results, please refine your search terms.",
+    "no_results": "No results found.",
     "pagetooltip": "See page",
     "window_title": "Search"
   }

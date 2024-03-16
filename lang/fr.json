@@ -10,8 +10,8 @@
     "highlighted_tooltip": "Ne plus surligner le texte recherché dans les documents",
     "unhighlighted_button": "Surligner On",
     "unhighlighted_tooltip": "Surligner le texte recherché dans les documents",
-    "page_tooltip": "Visualiser la page",
     "too_many_results": "Plus de 20 résultats, affinez votre recherche.",
+    "no_results": "Aucun résultat.",
     "window_title": "Rechercher"
   }
 }

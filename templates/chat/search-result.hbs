@@ -1,13 +1,13 @@
 <div class="search_chat {{cssClass}}">
   <h3>{{localize "FULLSEARCH.chat_intro"}}</h3>
   <div class="motif">{{localize "FULLSEARCH.chat_text"}}{{searchPattern}}</div>
-  <div class="btn-highlight">
-    <button id="highlight" data-tooltip="FULLSEARCH.{{#if highlighted}}highlighted_tooltip{{else}}unhighlighted_tooltip{{/if}}">{{#if highlighted}}{{localize "FULLSEARCH.highlighted_button"}}{{else}}{{localize "FULLSEARCH.unhighlighted_button"}}{{/if}}</button>
-  </div>
   {{#if hasresults}}
     {{#if tooMuchResults}}
       {{localize "FULLSEARCH.too_many_results"}}
     {{else}}
+      <div class="btn-highlight">
+        <button id="highlight" data-tooltip="FULLSEARCH.{{#if highlighted}}highlighted_tooltip{{else}}unhighlighted_tooltip{{/if}}">{{#if highlighted}}{{localize "FULLSEARCH.highlighted_button"}}{{else}}{{localize "FULLSEARCH.unhighlighted_button"}}{{/if}}</button>
+      </div>
       {{#if pageresults}}
         <h4>{{localize "DOCUMENT.JournalEntryPages"}}</h4>
         <div>

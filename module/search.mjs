@@ -17,7 +17,7 @@ export class SearchChat {
   }
 
   /**
-   * Creates the chat message.
+   * Creates the chat message with the search pattern.
    * @return this instance.
    */
   async create(searchPattern) {
@@ -101,7 +101,7 @@ export class SearchChat {
     
     this.data.hasresults = this.data.pageresults + this.data.itemresults + this.data.actorresults;
     this.data.tooMuchResults = this.data.hasresults > 20;
-    return;
+    return this;
   }
 
   /**
@@ -132,22 +132,32 @@ export class SearchChat {
         },
       ]);
     }
-    for (const appId in ui.windows) {
-      ui.windows[appId].render(true);
+    const journals = Object.values(ui.windows).filter(x => x instanceof JournalSheet);
+
+    for (const journal of journals) {
+       ui.windows[journal.appId].render(true);
     }
 
     // Update the chat message    
+    await SearchChat.updateMessage(messageId);
+  }
+
+  // Reset the chat message with no highlighting
+  static async updateMessage(messageId, reset = false) {
     const message = game.messages.get(messageId);
-    const chatData = message.getFlag("world", "searchData");
+    const searchPattern = message.getFlag("world", "searchPattern");
+    const searchData = message.getFlag("world", "searchData");    
     const highlighted = message.getFlag("world", "highlighted");
 
-    let newChatMessage = await new SearchChat();
-    newChatMessage.data = chatData;
-    newChatMessage.data.highlighted = !highlighted;
+    let newChatMessage = await new SearchChat();    
+    newChatMessage.data = searchData;    
+    newChatMessage.data.searchPattern = searchPattern;
+    newChatMessage.data.highlighted = reset ? false : !highlighted;
+    
     const newContent = await renderTemplate(newChatMessage.template, newChatMessage.data);
-    message.update({ content: newContent });
-    message.setFlag("world", "highlighted", !highlighted);
+    message.update({ content: newContent, "flags.world.highlighted": reset ? false : !highlighted});
   }
+
 }
 
 /**

@@ -21,7 +21,11 @@ Hooks.once("init", async () => {
 /*
  * READY HOOK
  */
-Hooks.on("ready", () => {
+Hooks.on("ready", async () => {
+  const searchMessages = game.messages.filter(m=>m.flags.world?.type==="searchPage");
+  for (const message of searchMessages) {
+    await SearchChat.updateMessage(message._id, true);  
+  }
   console.log(SETTINGS.LOG_HEADER + "Module ready !");
 });
 
@@ -30,7 +34,7 @@ Hooks.on("ready", () => {
  */
 Hooks.on("renderChatMessage", (message, html, data) => {
   console.debug("renderChatMessage", message, html, data);
-  const typeMessage = data.message.flags.world?.type;  
+  const typeMessage = data.message.flags.world?.type;
   if (typeMessage === "searchPage") {
     const messageId = data.message._id;
     html.find("#highlight").click(async (event) => await SearchChat.toggleEnricher(event, data.message.flags.world?.searchPattern, messageId));
