@@ -26,6 +26,13 @@
   margin: 5px;
   line-height: 18px;
 }
+.search_chat .journal {
+  margin: 5px 0px;
+}
+.search_chat .journal .journal_name {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
 .search_dialog {
   font: 1.2em "garamondpro";
 }

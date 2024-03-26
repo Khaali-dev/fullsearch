@@ -1,7 +1,7 @@
 import * as SETTINGS from "./constants.mjs";
 import { SearchChat } from "./search.mjs";
 import { initControlButtons, initSearchChatBar } from "./entryinterface.mjs";
-import registerModuleSettings  from './settings.mjs';
+import registerModuleSettings from "./settings.mjs";
 
 export default class FullsearchJournalSheet extends JournalSheet {}
 
@@ -15,14 +15,13 @@ Hooks.once("init", async () => {
   registerModuleSettings();
 
   const entryMethodSetting = game.settings.get("fullsearch", "entryMethod");
-  if(entryMethodSetting === "chatBar"){
+  if (entryMethodSetting === "chatBar") {
     /* Add the search chat bar */
     initSearchChatBar();
-  }
-  else {
-  /* Add the search button */
-  initControlButtons();
-  console.log("entryMethodSetting : ",entryMethodSetting);
+  } else {
+    /* Add the search button */
+    initControlButtons();
+    console.log("entryMethodSetting : ", entryMethodSetting);
   }
 
   console.log(SETTINGS.LOG_HEADER + "Module initialization finished");
@@ -32,9 +31,9 @@ Hooks.once("init", async () => {
  * READY HOOK
  */
 Hooks.on("ready", async () => {
-  const searchMessages = game.messages.filter(m=>m.flags.world?.type==="searchPage");
+  const searchMessages = game.messages.filter((m) => m.flags.world?.type === "searchPage");
   for (const message of searchMessages) {
-    await SearchChat.updateMessage(message._id, true);  
+    await SearchChat.updateMessage(message._id, true);
   }
   console.log(SETTINGS.LOG_HEADER + "Module ready !");
 });

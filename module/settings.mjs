@@ -11,7 +11,7 @@ export default function registerModuleSettings() {
       chatBar: "FULLSEARCH.settings.chatBar",
       controlButton: "FULLSEARCH.settings.controlButton",
     },
-    default: "controlButton",
+    default: "chatBar",
     requiresReload: true,
   });
 }

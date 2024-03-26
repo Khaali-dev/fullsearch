@@ -92,13 +92,13 @@ export class SearchChat {
     this.data.pageresults = pages.length;
 
     const itemResults = await game.items.search({ query: this.searchPattern });
-    this.data.itemResultCollection = itemResults.map(item => item._id);
+    this.data.itemResultCollection = itemResults.map((item) => item._id);
     this.data.itemresults = this.data.itemResultCollection.length;
 
-    const actorResults = await game.actors.search({ query: this.searchPattern });    
-    this.data.actorResultCollection = actorResults.map(actor => actor._id);
+    const actorResults = await game.actors.search({ query: this.searchPattern });
+    this.data.actorResultCollection = actorResults.map((actor) => actor._id);
     this.data.actorresults = this.data.actorResultCollection.length;
-    
+
     this.data.hasresults = this.data.pageresults + this.data.itemresults + this.data.actorresults;
     this.data.tooMuchResults = this.data.hasresults > 20;
     return this;
@@ -110,9 +110,9 @@ export class SearchChat {
   static async toggleEnricher(event, searchPattern, messageId) {
     event.preventDefault();
     const element = event.currentTarget;
-    
+
     // g for global, multiple replacements, i for case insensitive; the rest is for not replacing the html markup's content when the pattern appears in it
-    const regexPattern = await new RegExp("(" + searchPattern + ")(?![^<]*>)", "gim"); 
+    const regexPattern = await new RegExp("(" + searchPattern + ")(?![^<]*>)", "gim");
 
     let isAlreadyHighlighted = CONFIG.TextEditor.enrichers.findIndex((element) => element.namePattern === searchPattern);
     if (isAlreadyHighlighted >= 0) {
@@ -132,13 +132,13 @@ export class SearchChat {
         },
       ]);
     }
-    const journals = Object.values(ui.windows).filter(x => x instanceof JournalSheet);
+    const journals = Object.values(ui.windows).filter((x) => x instanceof JournalSheet);
 
     for (const journal of journals) {
-       ui.windows[journal.appId].render(true);
+      ui.windows[journal.appId].render(true);
     }
 
-    // Update the chat message    
+    // Update the chat message
     await SearchChat.updateMessage(messageId);
   }
 
@@ -146,18 +146,17 @@ export class SearchChat {
   static async updateMessage(messageId, reset = false) {
     const message = game.messages.get(messageId);
     const searchPattern = message.getFlag("world", "searchPattern");
-    const searchData = message.getFlag("world", "searchData");    
+    const searchData = message.getFlag("world", "searchData");
     const highlighted = message.getFlag("world", "highlighted");
 
-    let newChatMessage = await new SearchChat();    
-    newChatMessage.data = searchData;    
+    let newChatMessage = await new SearchChat();
+    newChatMessage.data = searchData;
     newChatMessage.data.searchPattern = searchPattern;
     newChatMessage.data.highlighted = reset ? false : !highlighted;
-    
-    const newContent = await renderTemplate(newChatMessage.template, newChatMessage.data);
-    message.update({ content: newContent, "flags.world.highlighted": reset ? false : !highlighted});
-  }
 
+    const newContent = await renderTemplate(newChatMessage.template, newChatMessage.data);
+    message.update({ content: newContent, "flags.world.highlighted": reset ? false : !highlighted });
+  }
 }
 
 /**
