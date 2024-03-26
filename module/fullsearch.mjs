@@ -13,6 +13,7 @@ Hooks.once("init", async () => {
 
   Journal.registerSheet(game.system.id, FullsearchJournalSheet, { makeDefault: false });
   registerModuleSettings();
+	preloadTemplates();
 
   const entryMethodSetting = game.settings.get("fullsearch", "entryMethod");
   if (entryMethodSetting === "chatBar") {
@@ -49,3 +50,13 @@ Hooks.on("renderChatMessage", (message, html, data) => {
     html.find("#highlight").click(async (event) => await SearchChat.toggleEnricher(event, data.message.flags.world?.searchPattern, messageId));
   }
 });
+
+async function preloadTemplates() {
+	const templatePaths = [
+		"modules/fullsearch/templates/chat/chatbar.hbs",
+		"modules/fullsearch/templates/chat/search-result.hbs",
+		"modules/fullsearch/templates/search/search-dialog.hbs",
+	];
+
+	return loadTemplates(templatePaths);
+}
