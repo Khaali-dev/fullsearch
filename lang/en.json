@@ -6,9 +6,12 @@
     "chat_text": "Searched text : ",
     "dialog_title": "Search some text in Journals, Actors, Items...",
     "dialog_input": "Type in the text you want to search :",
-    "highlight_button": "Highlight on/off",
-    "highlight_tooltip": "Toggle highlighting of pattern in documents",
+    "highlighted_button": "Highlight Off",
+    "highlighted_tooltip": "Toggle off highlighting of pattern in documents",
+    "unhighlighted_button": "Highlight On",
+    "unhighlighted_tooltip": "Toggle on highlighting of pattern in documents",
     "too_many_results": "More than 20 results, please refine your search terms.",
+    "no_results": "No results found.",
     "pagetooltip": "See page",
     "window_title": "Search"
   }
