@@ -2,7 +2,7 @@
   "id": "fullsearch",
   "title": "Search and Highlight",
   "description": "Module for searching a pattern in all journal pages and highlighting it",
-  "version": "0.9.0",
+  "version": "#{VERSION}#",
   "compatibility": {
     "minimum": 11,
     "verified": "11"
@@ -33,5 +33,7 @@
     }
   ],
   "packs": [],
+  "manifest": "#{MANIFEST}#",
+  "url": "#{URL}#",
   "protected": false
 }
