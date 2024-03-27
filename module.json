@@ -35,5 +35,6 @@
   "packs": [],
   "manifest": "#{MANIFEST}#",
   "url": "#{URL}#",
+  "download": "#{DOWNLOAD}#",
   "protected": false
 }
