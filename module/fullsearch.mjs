@@ -13,7 +13,7 @@ Hooks.once("init", async () => {
 
   Journal.registerSheet(game.system.id, FullsearchJournalSheet, { makeDefault: false });
   registerModuleSettings();
-	preloadTemplates();
+  preloadTemplates();
 
   const entryMethodSetting = game.settings.get("fullsearch", "entryMethod");
   if (entryMethodSetting === "chatBar") {
@@ -24,7 +24,6 @@ Hooks.once("init", async () => {
     initControlButtons();
     console.log("entryMethodSetting : ", entryMethodSetting);
   }
-
   console.log(SETTINGS.LOG_HEADER + "Module initialization finished");
 });
 
@@ -32,9 +31,11 @@ Hooks.once("init", async () => {
  * READY HOOK
  */
 Hooks.on("ready", async () => {
-  const searchMessages = game.messages.filter((m) => m.flags.world?.type === "searchPage");
-  for (const message of searchMessages) {
-    await SearchChat.updateMessage(message._id, true);
+  if (game.user.isGM) {
+    const searchMessages = game.messages.filter((m) => m.flags.world?.type === "searchPage");
+    for (const message of searchMessages) {
+      await SearchChat.updateMessage(message._id, true);
+    }
   }
   console.log(SETTINGS.LOG_HEADER + "Module ready !");
 });
@@ -43,20 +44,22 @@ Hooks.on("ready", async () => {
  * RENDER CHAT MESSAGE HOOK
  */
 Hooks.on("renderChatMessage", (message, html, data) => {
-  console.debug("renderChatMessage", message, html, data);
-  const typeMessage = data.message.flags.world?.type;
-  if (typeMessage === "searchPage") {
-    const messageId = data.message._id;
-    html.find("#highlight").click(async (event) => await SearchChat.toggleEnricher(event, data.message.flags.world?.searchPattern, messageId));
+  if (game.user.isGM) {
+    console.debug("renderChatMessage", message, html, data);
+    const typeMessage = data.message.flags.world?.type;
+    if (typeMessage === "searchPage") {
+      const messageId = data.message._id;
+      html.find("#highlight").click(async (event) => await SearchChat.toggleEnricher(event, data.message.flags.world?.searchPattern, messageId));
+    }
   }
 });
 
 async function preloadTemplates() {
-	const templatePaths = [
-		"modules/fullsearch/templates/chat/chatbar.hbs",
-		"modules/fullsearch/templates/chat/search-result.hbs",
-		"modules/fullsearch/templates/search/search-dialog.hbs",
-	];
+  const templatePaths = [
+    "modules/fullsearch/templates/chat/chatbar.hbs",
+    "modules/fullsearch/templates/chat/search-result.hbs",
+    "modules/fullsearch/templates/search/search-dialog.hbs",
+  ];
 
-	return loadTemplates(templatePaths);
+  return loadTemplates(templatePaths);
 }

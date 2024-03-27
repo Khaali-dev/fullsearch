@@ -5,9 +5,8 @@ export function initControlButtons() {
   CONFIG.Canvas.layers.fullsearch = { layerClass: ControlsLayer, group: "primary" };
 
   Hooks.on("getSceneControlButtons", (btns) => {
+    let menu = [];
     if (game.user.isGM) {
-      let menu = [];
-
       menu.push({
         name: "fullsearch",
         title: "FULLSEARCH.dialog_title",
@@ -30,31 +29,32 @@ export function initControlButtons() {
 
 //add the search icon in left menu
 export function initSearchChatBar() {
-  console.log("searchchat");
   Hooks.on("renderSidebarTab", async (app, html, data) => {
-    if (app.tabName !== "chat") return;
-    let $chat_form = html.find("#chat-form");
-    const content = await renderTemplate("modules/fullsearch/templates/chat/chatbar.hbs");
+    if (game.user.isGM) {
+      if (app.tabName !== "chat") return;
+      let $chat_form = html.find("#chat-form");
+      const content = await renderTemplate("modules/fullsearch/templates/chat/chatbar.hbs");
 
-    if (content.length > 0) {
-      let $content = $(content);
-      $chat_form.after($content);
-      $content.find(".startsearch").on("click", async (html) => {
+      if (content.length > 0) {
+        let $content = $(content);
+        $chat_form.after($content);
+        $content.find(".startsearch").on("click", async (html) => {
           let searchPattern = $content.find("[name=searchtext]")[0].value;
           if (searchPattern) {
             let search = await new SearchChat().create(searchPattern);
             await search.searchWorld();
             await search.display();
-        }
-      });
-      $content.find(".chatsearchtextbar").on("change", async (html) => {
+          }
+        });
+        $content.find(".chatsearchtextbar").on("change", async (html) => {
           let searchPattern = $content.find("[name=searchtext]")[0].value;
           if (searchPattern) {
             let search = await new SearchChat().create(searchPattern);
             await search.searchWorld();
             await search.display();
-        }
-      });
+          }
+        });
+      }
     }
   });
 }
