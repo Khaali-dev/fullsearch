@@ -1,3 +1,5 @@
+# 1.1.1
+Foundry V12 compatibility
 # 1.1.0
  - Max number of results can be changed
 # 1.0.1

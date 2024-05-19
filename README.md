@@ -7,5 +7,5 @@
 <li>A search bar at the bottom of the chat column.</li>
 <li>A looking glass icon in the left menu. Clicking on the icon will open the search dialog.</li>
 </ul>
-<p style="width: 70%;  margin-left: 10%;">Results will be displayed in the chat. For journal pages, the pattern can be highlighted by clicking on the relevant button.<br />
+<p style="width: 70%;  margin-left: 10%;">Results will be displayed in the chat. For journal pages, the pattern can be highlighted by clicking on the relevant button.<br />Max number of results can be increased in the options.<br />
 Please note that some systems have the functionality built-in : <em>Cthulhu Hack</em>, <em>Le cabinet des murmures</em>, <em>Trinites</em>. You don't need to add this module to those systems.</p>
