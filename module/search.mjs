@@ -57,6 +57,7 @@ export class SearchChat {
     chatData.user = game.user.id;
     chatData.content = this.content;
     chatData.flags = { world: { type: "searchPage", searchPattern: this.searchPattern, searchData: this.data, highlighted: this.highlighted } };
+    ChatMessage.applyRollMode(chatData, "selfroll");
 
     this.chat = await ChatMessage.create(chatData);
     return this;
@@ -69,12 +70,14 @@ export class SearchChat {
   async searchWorld() {
     let pages = [];
     game.journal.forEach(async (doc) => {
-      let pagesArray = doc.pages.search({ query: this.searchPattern });
+      let pagesArray = await doc.pages.search({ query: this.searchPattern });
       pagesArray.forEach((page) => {
+        if(page.permission){
         pages.push({ name: page.name, id: page._id, journalId: doc._id, journalName: doc.name });
+      }
       });
     });
-
+console.log(this.searchPattern);
     // Group by journal
     const groupedByJournal = pages.reduce((acc, page) => {
       // Create a new group for the journal if it doesn't exist
@@ -93,11 +96,11 @@ export class SearchChat {
     this.data.pageResultCollection = groupedByJournal;
     this.data.pageresults = pages.length;
 
-    const itemResults = await game.items.search({ query: this.searchPattern });
+    const itemResults = await game.items.search({ query: this.searchPattern }).filter((obj) => obj.permission);
     this.data.itemResultCollection = itemResults.map((item) => item._id);
     this.data.itemresults = this.data.itemResultCollection.length;
 
-    const actorResults = await game.actors.search({ query: this.searchPattern });
+    const actorResults = await game.actors.search({ query: this.searchPattern }).filter((obj) => obj.permission);
     this.data.actorResultCollection = actorResults.map((actor) => actor._id);
     this.data.actorresults = this.data.actorResultCollection.length;
 
