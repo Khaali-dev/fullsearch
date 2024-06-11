@@ -11,7 +11,7 @@ export class SearchChat {
     this.data = {
       pageResultCollection: [],
       itemResultCollection: [],
-      actorResultCollection: []
+      actorResultCollection: [],
     };
     this.template = "modules/fullsearch/templates/chat/search-result.hbs";
   }
@@ -69,15 +69,9 @@ export class SearchChat {
    */
   async searchWorld() {
     let pages = [];
-    game.journal.forEach(async (doc) => {
-      let pagesArray = await doc.pages.search({ query: this.searchPattern });
-      pagesArray.forEach((page) => {
-        if(page.permission){
-        pages.push({ name: page.name, id: page._id, journalId: doc._id, journalName: doc.name });
-      }
-      });
-    });
-console.log(this.searchPattern);
+    const groupedByJournal = await this.searchPages();
+
+    /*
     // Group by journal
     const groupedByJournal = pages.reduce((acc, page) => {
       // Create a new group for the journal if it doesn't exist
@@ -90,11 +84,12 @@ console.log(this.searchPattern);
       acc[page.journalId].pages.push({ pageId: page.id });
       return acc;
     }, {});
-
+*/
     const maxResults = parseInt(game.settings.get("fullsearch", "maxResults"));
 
     this.data.pageResultCollection = groupedByJournal;
-    this.data.pageresults = pages.length;
+    this.data.pageresults = Object.keys(groupedByJournal).length;
+    console.log("groupedByJournal", groupedByJournal);
 
     const itemResults = await game.items.search({ query: this.searchPattern }).filter((obj) => obj.permission);
     this.data.itemResultCollection = itemResults.map((item) => item._id);
@@ -105,8 +100,8 @@ console.log(this.searchPattern);
     this.data.actorresults = this.data.actorResultCollection.length;
 
     this.data.hasresults = this.data.pageresults + this.data.itemresults + this.data.actorresults;
-    this.data.tooMuchResults = this.data.hasresults > maxResults ? game.i18n.format("FULLSEARCH.too_many_results", {maxResults : maxResults}) : false;
-    
+    this.data.tooMuchResults = this.data.hasresults > maxResults ? game.i18n.format("FULLSEARCH.too_many_results", { maxResults: maxResults }) : false;
+
     return this;
   }
 
@@ -163,8 +158,26 @@ console.log(this.searchPattern);
     const newContent = await renderTemplate(newChatMessage.template, newChatMessage.data);
     message.update({ content: newContent, "flags.world.highlighted": reset ? false : !highlighted });
   }
-}
 
+  async searchPages() {
+    const groupedByJournal = {};
+    game.journal.forEach(async (doc) => {
+      let pagesArray = await doc.pages.search({ query: this.searchPattern });
+      pagesArray.forEach((page) => {
+        if (page.permission) {
+          // Create a new group for the journal if it doesn't exist
+          groupedByJournal[doc._id] = groupedByJournal[doc._id] || {
+            journalName: doc.name,
+            journalId: doc._id,
+            pages: [],
+          };
+          groupedByJournal[doc._id].pages.push({ pageId: page.id });
+        }
+      });
+    });
+    return groupedByJournal;
+  }
+}
 /**
  * Prompt the user to perform a search.
  * @extends {Dialog}

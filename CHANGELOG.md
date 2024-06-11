@@ -1,3 +1,5 @@
+# 1.2.1
+Bug in Page journal Search
 # 1.2.0
 Search can be opened to players
 # 1.1.1

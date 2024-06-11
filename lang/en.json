@@ -23,7 +23,7 @@
       "maxResultsName" : "Max results",
       "maxResultsHint" : "Maximum number of results",
       "userSearchName" : "Allow players",
-      "userSearchHint" : "Allow players access to the search fucction"
+      "userSearchHint" : "Allow players access to the search function"
     }
   }
 }
