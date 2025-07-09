@@ -4,8 +4,8 @@
 <p style="margin-left: 20%;"> <img src="/assets/images/example1.webp" alt="" width="600" height="360" /></p>
 <p style="width: 70%;  margin-left: 10%;">You can choose between two entry methods in the module options :</p>
 <ul>
-<li>A search bar at the bottom of the chat column.</li>
-<li>A looking glass icon in the left menu. Clicking on the icon will open the search dialog.</li>
+<li>The search bar is available in the "looking glass" tab, in the right column.</li>
+<li>Clicking on the icon will open the search dialog, or filling the input bar will directly start the search.</li>
 </ul>
 <p style="width: 70%;  margin-left: 10%;">Results will be displayed in the chat. For journal pages, the pattern can be highlighted by clicking on the relevant button.<br />Max number of results can be increased in the options.</p>
 <p style="width: 70%;  margin-left: 10%;">As an option you can also open the search functionnality to players.</p>

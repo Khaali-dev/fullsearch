@@ -4,10 +4,10 @@
   "description": "Module for searching a pattern in all journal pages and highlighting it",
   "version": "#{VERSION}#",
   "compatibility": {
-    "minimum": 11,
-    "verified": "12"
+    "minimum": "13",
+    "verified": "13",
+    "maximum": "13"
   },
-  "system": [],
   "relationships": {},
   "authors": [
     {

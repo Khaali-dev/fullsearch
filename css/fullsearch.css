@@ -66,3 +66,46 @@
   margin: 3px;
   background: rgba(255, 255, 245, 0.8);
 }
+.fullsearch-sidebar {
+  flex-direction: column;
+  overflow-y: auto;
+  margin: 20px 0;
+}
+.fullsearch-sidebar section {
+  gap: 0.5rem;
+}
+.fullsearch-sidebar section h4 {
+  margin: 0;
+}
+.fullsearch-sidebar section .icon {
+  flex-basis: 2rem;
+  margin: 12px 10px;
+  text-align: center;
+}
+.fullsearch-sidebar section .justifycenter {
+  justify-content: center;
+}
+.fullsearch-sidebar .info {
+  font-size: var(--font-size-13);
+}
+.fullsearch-sidebar .info .title {
+  margin: 0;
+  text-align: center;
+}
+.fullsearch-sidebar .info .subtitle {
+  margin: -0.5rem 0 0;
+  color: var(--color-text-subtle);
+  text-align: center;
+}
+.fullsearch-sidebar button {
+  width: 30px;
+  align-self: center;
+}
+.fullsearch-sidebar input {
+  margin: 10px;
+  background: rgba(255, 255, 245, 0.8);
+  color: black;
+}
+.fullsearch-sidebar h1 {
+  text-align: center;
+}

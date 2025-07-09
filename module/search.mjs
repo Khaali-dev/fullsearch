@@ -41,7 +41,7 @@ export class SearchChat {
     data.searchPattern = this.searchPattern;
     data.highlighted = this.highlighted;
     // Call the template renderer.
-    return await renderTemplate(this.template, data);
+    return await foundry.applications.handlebars.renderTemplate(this.template, data);
   }
 
   /**
@@ -71,20 +71,6 @@ export class SearchChat {
     let pages = [];
     const groupedByJournal = await this.searchPages();
 
-    /*
-    // Group by journal
-    const groupedByJournal = pages.reduce((acc, page) => {
-      // Create a new group for the journal if it doesn't exist
-      acc[page.journalId] = acc[page.journalId] || {
-        journalName: page.journalName,
-        journalId: page.journalId,
-        pages: [],
-      };
-      // Add the page to the journal's group
-      acc[page.journalId].pages.push({ pageId: page.id });
-      return acc;
-    }, {});
-*/
     const maxResults = parseInt(game.settings.get("fullsearch", "maxResults"));
 
     this.data.pageResultCollection = groupedByJournal;
@@ -133,10 +119,11 @@ export class SearchChat {
         },
       ]);
     }
-    const journals = Object.values(ui.windows).filter((x) => x instanceof JournalSheet);
+    const journals = foundry.applications.instances.values().filter((x) => x.document instanceof JournalEntry)
+
 
     for (const journal of journals) {
-      ui.windows[journal.appId].render(true);
+      foundry.applications.instances.get(journal.id).render(true)
     }
 
     // Update the chat message
@@ -155,7 +142,7 @@ export class SearchChat {
     newChatMessage.data.searchPattern = searchPattern;
     newChatMessage.data.highlighted = reset ? false : !highlighted;
 
-    const newContent = await renderTemplate(newChatMessage.template, newChatMessage.data);
+    const newContent = await foundry.applications.handlebars.renderTemplate(newChatMessage.template, newChatMessage.data);
     message.update({ content: newContent, "flags.world.highlighted": reset ? false : !highlighted });
   }
 
