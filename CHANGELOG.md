@@ -1,3 +1,5 @@
+# 3.0.0
+Foundry v14 compatibility. 
 # 2.0.0
 Foundry v13 compatibility. The icons and serch bar have been moved in the looking glass tab, in the right column.
 # 1.2.1

@@ -57,7 +57,7 @@ export class SearchChat {
     chatData.user = game.user.id;
     chatData.content = this.content;
     chatData.flags = { world: { type: "searchPage", searchPattern: this.searchPattern, searchData: this.data, highlighted: this.highlighted } };
-    ChatMessage.applyRollMode(chatData, "selfroll");
+    chatData.whisper = [game.user.id];
 
     this.chat = await ChatMessage.create(chatData);
     return this;

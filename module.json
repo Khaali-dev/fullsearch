@@ -4,9 +4,9 @@
   "description": "Module for searching a pattern in all journal pages and highlighting it",
   "version": "#{VERSION}#",
   "compatibility": {
-    "minimum": "13",
-    "verified": "13",
-    "maximum": "13"
+    "minimum": "14",
+    "verified": "14",
+    "maximum": "14"
   },
   "relationships": {},
   "authors": [

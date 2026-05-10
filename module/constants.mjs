@@ -5,4 +5,4 @@ export const MODULE_ID = "fullsearch";
 export const MODULE_NAME = "Full search";
 export const LOG_HEADER = "FULLSEARCH | ";
 
-export const MODULE_VERSION = "2.0.0";
+export const MODULE_VERSION = "3.0.0";
